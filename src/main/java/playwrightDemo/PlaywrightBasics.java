@@ -1,6 +1,7 @@
 package playwrightDemo;
 
 import com.microsoft.playwright.Browser;
+import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 
@@ -8,7 +9,10 @@ public class PlaywrightBasics {
 
     public static void main(String[] args) {
         Playwright playwright = Playwright.create();    //This will start Playwright server
-        Browser browser = playwright.chromium().launch();
+
+        //playwright.firefox().launch(new BrowserType.LaunchOptions().setHeadless(false)); --> to launch firefox
+        //playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(false));  --> to launch safari
+        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         Page page = browser.newPage();
         page.navigate("https://www.amazon.in");
 
